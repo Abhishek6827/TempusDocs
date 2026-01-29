@@ -1,14 +1,14 @@
 ---
 title: API Reference
-description: Internal API Routes and Qboxmail Integration
+description: Internal API Routes and TempusMail Integration
 order: 4
 ---
 
 The application uses an internal API layer at `/api/*` to proxy requests to external services securely.
 
-## Qboxmail Integration (`lib/api.ts`)
+## TempusMail Integration (`lib/api.ts`)
 
-The `qboxmailAPI` object contains methods to interact with Qboxmail services.
+The `qboxmailAPI` object contains methods to interact with TempusMail services.
 
 ### Domains
 

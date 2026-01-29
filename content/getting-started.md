@@ -44,7 +44,7 @@ Follow these instructions to get the Premium Admin Panel up and running on your 
    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
    
-   # Qboxmail API (Optional if using API routes)
+   # TempusMail API (Optional if using API routes)
    NEXT_PUBLIC_QBOXMAIL_API_URL=https://api.qboxmail.com
    NEXT_PUBLIC_QBOXMAIL_API_TOKEN=your_token
    ```

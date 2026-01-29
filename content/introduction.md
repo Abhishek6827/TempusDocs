@@ -32,6 +32,6 @@ Premium-AdminPanel/
 │   └── ...               # Feature-specific components
 ├── lib/                  # Utilities and helpers
 │   ├── firebase/         # Firebase configuration
-│   └── api.ts            # Qboxmail / Cloud Function API client
+│   └── api.ts            # TempusMail / Cloud Function API client
 └── public/               # Static assets
 ```

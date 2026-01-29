@@ -72,7 +72,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">API Reference</h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Complete API documentation for internal routes and third-party integrations (Qboxmail).
+                Complete API documentation for internal routes and third-party integrations (TempusMail).
               </p>
             </div>
           </div>

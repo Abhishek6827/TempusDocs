@@ -23,7 +23,7 @@ The Premium Admin Panel is designed as a modern, serverless-first application le
 ### Backend / Infrastructure
 - **Authentication**: Firebase Authentication (Email/Password & seamless cross-domain auth)
 - **API Layer**: 
-    - **Next.js API Routes**: Proxy requests to Cloud Functions/Qboxmail API.
+    - **Next.js API Routes**: Proxy requests to Cloud Functions/TempusMail API.
     - **Firebase Cloud Functions**: Handles business logic, database interactions, and secure 3rd party API calls.
 - **Database**: Firestore (via Cloud Functions)
 
