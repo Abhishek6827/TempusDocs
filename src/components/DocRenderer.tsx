@@ -63,7 +63,7 @@ export default function DocRenderer({ content }: DocRendererProps) {
             </motion.div>
           ),
           h2: ({ node, ...props }) => (
-             <motion.div variants={fadeInUp} className="group flex items-center gap-2 mt-12 mb-4">
+             <motion.div variants={fadeInUp} className="group flex items-center gap-2 mt-12 mb-4 border-b border-gray-200 dark:border-gray-800 pb-2">
                 <Hash className="w-6 h-6 text-gray-400 group-hover:text-blue-500 transition-colors" />
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100" {...props as any}>
                   {props.children}

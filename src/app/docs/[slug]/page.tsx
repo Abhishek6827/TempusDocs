@@ -2,7 +2,20 @@ import { getDocBySlug, getAllDocs } from '@/lib/docs';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import DocRenderer from '@/components/DocRenderer';
-import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import {  
+  Rocket, 
+  Globe, 
+  Mail, 
+  UploadCloud, 
+  Activity, 
+  ClipboardList, 
+  Users, 
+  CreditCard, 
+  User, 
+  FileText,
+  ChevronLeft, 
+  ChevronRight 
+} from 'lucide-react';
 import Link from 'next/link';
 
 interface PageProps {
@@ -34,6 +47,22 @@ export async function generateStaticParams() {
   }));
 }
 
+// Icon mapping helper (matching layout.tsx)
+const getIcon = (slug: string) => {
+  switch (slug) {
+    case 'dashboard': return Rocket;
+    case 'domain-management': return Globe;
+    case 'email-accounts': return Mail;
+    case 'imports': return UploadCloud;
+    case 'tracemail': return Activity;
+    case 'audit-log': return ClipboardList;
+    case 'team-management': return Users;
+    case 'billing': return CreditCard;
+    case 'profile': return User;
+    default: return FileText;
+  }
+};
+
 export default async function DocPage({ params }: PageProps) {
   const { slug } = await params;
   const doc = getDocBySlug(slug);
@@ -47,12 +76,14 @@ export default async function DocPage({ params }: PageProps) {
   const prevDoc = currentIndex > 0 ? allDocs[currentIndex - 1] : null;
   const nextDoc = currentIndex < allDocs.length - 1 ? allDocs[currentIndex + 1] : null;
 
+  const Icon = getIcon(slug);
+
   return (
     <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="p-2.5 bg-blue-600 rounded-xl shadow-lg shadow-blue-600/20">
-             <Sparkles className="w-8 h-8 text-white" />
+             <Icon className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
             {doc.frontmatter.title}
