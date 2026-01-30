@@ -8,7 +8,7 @@ The application uses an internal API layer at `/api/*` to proxy requests to exte
 
 ## TempusMail Integration (`lib/api.ts`)
 
-The `qboxmailAPI` object contains methods to interact with TempusMail services.
+The `tempusMailAPI` object contains methods to interact with TempusMail services.
 
 ### Domains
 
