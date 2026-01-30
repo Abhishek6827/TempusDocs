@@ -32,11 +32,7 @@ export default function DocsLayout({
   const groups = [
     {
       title: 'Start Here',
-      items: ['introduction', 'getting-started'],
-    },
-    {
-      title: 'Core Concepts',
-      items: ['architecture', 'api-reference'],
+      items: ['dashboard'],
     },
     {
       title: 'Features',
@@ -54,10 +50,7 @@ export default function DocsLayout({
   // Icon mapping
   const getIcon = (slug: string) => {
     switch (slug) {
-      case 'introduction': return BookOpen;
-      case 'getting-started': return Rocket;
-      case 'architecture': return Layers;
-      case 'api-reference': return FileCode;
+      case 'dashboard': return Rocket;
       case 'domain-management': return Globe;
       case 'email-accounts': return Mail;
       case 'imports': return UploadCloud;
@@ -78,12 +71,12 @@ export default function DocsLayout({
           <Link href="/" className="font-bold text-xl flex items-center gap-2">
             <Image 
               src="/Footer.png" 
-              alt="TempusDocs Logo" 
+              alt="TempusMail Logo" 
               width={32} 
               height={32} 
               className="w-8 h-8 object-contain"
             />
-            <span>TempusDocs</span>
+            <span>TempusMail</span>
           </Link>
           <Link href="/" className="md:hidden">
             <Home className="w-5 h-5 text-gray-500 hover:text-gray-900" />

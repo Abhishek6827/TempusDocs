@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${doc.frontmatter.title} - TempusDocs`,
+    title: `${doc.frontmatter.title} - TempusMail`,
     description: doc.frontmatter.description,
   };
 }

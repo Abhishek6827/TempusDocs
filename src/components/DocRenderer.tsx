@@ -9,7 +9,7 @@ import { Hash, ChevronRight, Star, Sparkles, AlertCircle, Info, CheckCircle2 } f
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-import { useSearchParams } from 'next/navigation';
+
 import Highlight from '@/components/Highlight';
 
 function cn(...inputs: (string | undefined | null | false)[]) {
@@ -36,8 +36,14 @@ const staggerContainer = {
 };
 
 export default function DocRenderer({ content }: DocRendererProps) {
-  const searchParams = useSearchParams();
-  const q = searchParams.get('q') || '';
+  const [q, setQ] = React.useState('');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setQ(params.get('q') || '');
+    }
+  }, []);
 
   return (
     <motion.div
