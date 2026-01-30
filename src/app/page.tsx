@@ -1,5 +1,6 @@
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Book, ArrowRight, Layers, FileText, Globe } from 'lucide-react';
 
 export default function Home() {
@@ -8,7 +9,13 @@ export default function Home() {
       <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center gap-2 font-bold text-xl text-gray-900 dark:text-white">
-            <Book className="w-6 h-6 text-blue-600" />
+            <Image 
+              src="/Footer.png" 
+              alt="TempusDocs Logo" 
+              width={32} 
+              height={32} 
+              className="w-8 h-8 object-contain"
+            />
             <span>TempusDocs</span>
           </div>
           <Link 
@@ -29,9 +36,9 @@ export default function Home() {
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
               Comprehensive guide for developers and administrators to manage, deploy, and extend the TempusMail Premium Admin Panel.
             </p>
-            <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4">
               <Link
-                href="/docs/introduction"
+                href="/docs/getting-started"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Get Started <ArrowRight className="ml-2 w-4 h-4" />
@@ -46,7 +53,7 @@ export default function Home() {
           </div>
 
           <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+            <Link href="/docs/architecture" className="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4 text-blue-600 dark:text-blue-300">
                 <Layers className="w-6 h-6" />
               </div>
@@ -54,9 +61,9 @@ export default function Home() {
               <p className="text-gray-600 dark:text-gray-400">
                 Learn about the Next.js App Router, Firebase integration, and secure serverless architecture.
               </p>
-            </div>
+            </Link>
             
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+            <Link href="/docs/domain-management" className="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4 text-green-600 dark:text-green-300">
                 <Globe className="w-6 h-6" />
               </div>
@@ -64,9 +71,9 @@ export default function Home() {
               <p className="text-gray-600 dark:text-gray-400">
                 Detailed guides on domain verification, lifecycle management, and DNS configuration.
               </p>
-            </div>
+            </Link>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+            <Link href="/docs/api-reference" className="block bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4 text-purple-600 dark:text-purple-300">
                 <FileText className="w-6 h-6" />
               </div>
@@ -74,7 +81,7 @@ export default function Home() {
               <p className="text-gray-600 dark:text-gray-400">
                 Complete API documentation for internal routes and third-party integrations (TempusMail).
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       </main>

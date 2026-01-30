@@ -1,8 +1,9 @@
-
 import { getDocBySlug, getAllDocs } from '@/lib/docs';
-import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import DocRenderer from '@/components/DocRenderer';
+import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface PageProps {
   params: Promise<{
@@ -41,43 +42,62 @@ export default async function DocPage({ params }: PageProps) {
     notFound();
   }
 
+  const allDocs = getAllDocs();
+  const currentIndex = allDocs.findIndex((d) => d.slug === slug);
+  const prevDoc = currentIndex > 0 ? allDocs[currentIndex - 1] : null;
+  const nextDoc = currentIndex < allDocs.length - 1 ? allDocs[currentIndex + 1] : null;
+
   return (
-    <article className="prose prose-slate dark:prose-invert max-w-none lg:prose-lg">
-      <h1 className="text-3xl font-bold mb-4">{doc.frontmatter.title}</h1>
-      {doc.frontmatter.description && (
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 border-b pb-4">
-          {doc.frontmatter.description}
-        </p>
-      )}
-      <ReactMarkdown
-        components={{
-          h1: ({ node, ...props }) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-          h2: ({ node, ...props }) => <h2 className="text-2xl font-semibold mt-8 mb-4 border-b pb-2" {...props} />,
-          h3: ({ node, ...props }) => <h3 className="text-xl font-semibold mt-6 mb-3" {...props} />,
-          code: ({ node, className, children, ...props }) => {
-            const match = /language-(\w+)/.exec(className || '');
-            const isInline = !match && !className; // Basic check for inline code
-             if (isInline) {
-              return (
-                <code className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400" {...props}>
-                    {children}
-                </code>
-              )
-            }
-            return (
-              <div className="rounded-lg overflow-hidden my-4 bg-gray-900 border border-gray-800 text-gray-100 p-4 overflow-x-auto">
-                 <code className={className} {...props}>
-                  {children}
-                </code>
-              </div>
-            );
-          },
-          pre: ({ node, ...props }) => <pre className="bg-transparent p-0 m-0" {...props} />,
-           a: ({ node, ...props }) => <a className="text-blue-600 hover:underline" {...props} />,
-        }}
-      >
-        {doc.content}
-      </ReactMarkdown>
+    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mb-12">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="p-2.5 bg-blue-600 rounded-xl shadow-lg shadow-blue-600/20">
+             <Sparkles className="w-8 h-8 text-white" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            {doc.frontmatter.title}
+          </h1>
+        </div>
+        {doc.frontmatter.description && (
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed border-l-4 border-gray-200 dark:border-gray-700 pl-6 ml-2">
+            {doc.frontmatter.description}
+          </p>
+        )}
+      </div>
+      
+      <DocRenderer content={doc.content} />
+
+      <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {prevDoc ? (
+          <Link
+            href={`/docs/${prevDoc.slug}`}
+            className="group flex flex-col p-6 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-lg transition-all duration-300"
+          >
+            <span className="flex items-center text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2 group-hover:text-blue-500 transition-colors">
+              <ChevronLeft className="w-4 h-4 mr-1" />
+              Previous
+            </span>
+            <span className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {prevDoc.frontmatter.title}
+            </span>
+          </Link>
+        ) : <div />}
+
+        {nextDoc ? (
+          <Link
+            href={`/docs/${nextDoc.slug}`}
+            className="group flex flex-col items-end p-6 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-lg transition-all duration-300 text-right"
+          >
+            <span className="flex items-center text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2 group-hover:text-blue-500 transition-colors">
+              Next
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </span>
+            <span className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {nextDoc.frontmatter.title}
+            </span>
+          </Link>
+        ) : <div />}
+      </div>
     </article>
   );
 }
